@@ -10,7 +10,7 @@ Add the following dependencies in `build.gradle`
 dependencies {
 ...
     compile 'org.grails.plugins:spring-security-oauth2:1.1+'
-    compile 'org.grails.plugins:spring-security-oauth2-twitter:1.0.0'
+    compile 'org.grails.plugins:spring-security-oauth2-azure:0.1.1'
 ...
 }
 ```
@@ -35,7 +35,7 @@ You can replace the URIs with your own controller implementation.
 
 In your view you can use the taglib exposed from this plugin and from OAuth plugin to create links and to know if the user is authenticated with a given provider:
 ```xml
-<oauth2:connect provider="azure" id="azure-connect-link">Twitter</oauth2:connect>
+<oauth2:connect provider="azure" id="azure-connect-link">Azure</oauth2:connect>
 
 Logged with Azure?
 <oauth2:ifLoggedInWith provider="azure">yes</oauth2:ifLoggedInWith>
