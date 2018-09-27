@@ -1,0 +1,82 @@
+buildscript {
+    ext {
+        grailsVersion = project.grailsVersion
+    }
+    repositories {
+        mavenLocal()
+        maven { url "https://repo.grails.org/grails/core" }
+    }
+    dependencies {
+        classpath "org.grails:grails-gradle-plugin:$grailsVersion"
+        classpath "com.bertramlabs.plugins:asset-pipeline-gradle:2.8.2"
+    }
+}
+
+version "0.1.0"
+group "org.grails.plugins"
+
+apply plugin:"eclipse"
+apply plugin:"idea"
+apply plugin:"org.grails.grails-plugin"
+apply plugin:"org.grails.grails-plugin-publish"
+apply plugin:"org.grails.grails-gsp"
+apply plugin:"asset-pipeline"
+
+ext {
+    grailsVersion = project.grailsVersion
+    gradleWrapperVersion = project.gradleWrapperVersion
+}
+
+repositories {
+    mavenLocal()
+    maven { url "https://repo.grails.org/grails/core" }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.grails:grails-bom:$grailsVersion"
+    }
+    applyMavenExclusions false
+}
+
+dependencies {
+    provided 'javax.servlet:javax.servlet-api:3.1.0'
+    provided 'org.grails:grails-dependencies'
+    compile 'org.codehaus.groovy:groovy-all:2.4.3'
+    compile 'com.github.scribejava:scribejava-apis:5.6.0'
+    provided 'org.grails.plugins:spring-security-core:3.+'
+    provided 'org.grails.plugins:spring-security-oauth2:1.1.0'
+    console "org.grails:grails-console"
+}
+
+bintray {
+    pkg {
+        userOrg = ''
+        name = "$project.name"
+        issueTrackerUrl = "https://github.com/joshfrayer/grails-$project.name/issues"
+        vcsUrl = "https://github.com/joshfrayer/grails-$project.name"
+        version {
+            attributes = [ 'grails-plugin': "$project.group:$project.name" ]
+            name = project.version
+        }
+    }
+}
+
+grailsPublish {
+    // TODO: Provide values here
+    user = ''
+    key = ''
+    githubSlug = "joshfrayer/grails-$project.name"
+    license {
+        name = 'Apache-2.0'
+    }
+    title = "Spring Security Oauth2 Azure Provider"
+    desc = "This plugin provides the capability to authenticate via Azure OAuth2 provider."
+    developers = [johndoe:"John Doe"]
+    portalUser = ""
+    portalPassword = ""
+}
+
+assets {
+    packagePlugin = true
+}
