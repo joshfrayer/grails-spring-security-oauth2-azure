@@ -12,7 +12,7 @@ buildscript {
     }
 }
 
-version "0.1.1"
+version "0.1.2"
 group "org.grails.plugins"
 
 apply plugin:"eclipse"
@@ -64,8 +64,8 @@ bintray {
 
 grailsPublish {
     // TODO: Provide values here
-    user = ''
-    key = ''
+    user = project.bintray_user ?: ''
+    key = project.bintray_key ?: ''
     githubSlug = "joshfrayer/grails-$project.name"
     license {
         name = 'Apache-2.0'

@@ -88,8 +88,8 @@ This plugin provides the capability to authenticate via Azure  OAuth2 provider. 
         try {
             oAuth2BaseService.registerProvider(twitterOAuth2Service)
         } catch (OAuth2Exception exception) {
-            log.error("There was an oAuth2Exception", exception)
-            log.error("OAuth2 Twitter not loaded")
+            log.error("There was an OAuth2Exception", exception)
+            log.error("OAuth2 Azure not loaded")
         }
     }
 }
